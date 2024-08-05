@@ -371,7 +371,7 @@ export const GlobalProvider = memo(
         useEffect(() => {
             const id = setTimeout(() => {
                 const dot = hasRelevantUnsavedChanges ? ' •' : '';
-                document.title = `Xavis - ${savePath || '9003DP'}${dot}`;
+                document.title = `Xavis - ${savePath || 'Untitled'}${dot}`;
             }, 200);
             return () => clearTimeout(id);
         }, [savePath, hasRelevantUnsavedChanges]);
