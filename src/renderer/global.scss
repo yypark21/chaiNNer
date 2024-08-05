@@ -1,0 +1,280 @@
+@use 'colors.scss';
+@import 'reactflow/dist/style.css';
+
+/* :not(.chakra-slider__track):not(.chakra-menu__menu-button):not(.react-flow__handle)
+:not(.chakra-slider__track):not(.chakra-menu__menu-button):not(.react-flow__handle)
+:not(.chakra-slider__track):not(.chakra-menu__menu-button):not(.react-flow__handle) */
+
+@font-face {
+    font-family: Roboto-Mono;
+    font-display: swap;
+    src: url('../public/fonts/Roboto Mono/RobotoMono-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-display: swap;
+    font-style: normal;
+    src: url('../public/fonts/Open Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-display: swap;
+    font-style: italic;
+    src: url('../public/fonts/Open Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf')
+        format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Emoji';
+    font-display: swap;
+    src: url('../public/fonts/Noto Emoji/NotoEmoji-VariableFont_wght.ttf') format('truetype');
+}
+
+:not(input, textarea, button, svg, path, g, span, circle) {
+    &,
+    &::after,
+    &::before {
+        user-select: none;
+        cursor: default;
+    }
+}
+
+:root {
+    --toast-z-index: 6001;
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    overflow: clip;
+}
+
+.react-flow__attribution {
+    display: none;
+}
+
+.react-flow__node:focus,
+:focus-visible,
+:focus-within {
+    outline: none;
+}
+
+@keyframes logo-dashdraw {
+    from {
+        stroke-dashoffset: 10;
+    }
+}
+
+.react-flow__handle-left {
+    left: 0 !important;
+    top: 0% !important;
+    transform: translateY(0%) !important;
+}
+
+.react-flow__handle-right {
+    right: 0 !important;
+    top: 0% !important;
+    transform: translateY(0%) !important;
+}
+
+.react-flow__handle {
+    position: relative;
+}
+
+.react-flow__controls {
+    border-radius: 8px;
+    transition: 0.15s background ease-in-out;
+}
+
+.react-flow__controls-button {
+    transition: 0.15s background ease-in-out !important;
+    transition: 0.15s border ease-in-out;
+
+    &:disabled {
+        cursor: default;
+    }
+
+    &:disabled > svg {
+        fill: var(--theme-600);
+    }
+}
+
+.react-flow__controls-zoomin {
+    border-radius: 8px 8px 0 0;
+}
+
+.react-flow__controls > button:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.react-flow__minimap {
+    border-radius: 0.5rem;
+
+    svg {
+        border-radius: 0.5rem;
+    }
+}
+
+[data-theme='light'] {
+    .react-flow__controls:hover {
+        background: var(--theme-300) !important;
+    }
+
+    .react-flow__controls-button {
+        border: 0 solid black !important;
+        background: var(--controls-bg) !important;
+
+        &:not(:disabled):hover {
+            background: var(--controls-bg-hover) !important;
+            border: 0 solid black !important;
+        }
+
+        &:not(:disabled) > svg {
+            fill: black;
+        }
+    }
+
+    .react-flow__minimap {
+        background-color: var(
+            --minimap-bg
+        ); /* - defines base minimap opacity, everything sits on top of this */
+    }
+
+    .react-flow__minimap-node {
+        fill: var(--minimap-node);
+        stroke: none;
+    }
+
+    .react-flow__minimap-mask {
+        fill: var(--minimap-mask-fill);
+        stroke: var(--minimap-mask-stroke);
+        stroke-width: 15;
+    }
+}
+
+[data-theme='dark'] {
+    .react-flow__controls:hover {
+        background: var(--theme-700) !important;
+    }
+
+    .react-flow__controls-button {
+        border: 0 solid white !important;
+        background: var(--controls-bg) !important;
+
+        &:not(:disabled):hover {
+            background: var(--controls-bg-hover) !important;
+            border: 0 solid white !important;
+        }
+
+        &:not(:disabled) > svg {
+            fill: white;
+        }
+    }
+
+    .react-flow__minimap {
+        background-color: var(
+            --minimap-bg
+        ); /* - defines base minimap opacity, everything sits on top of this */
+    }
+
+    .react-flow__minimap-node {
+        fill: var(--minimap-node);
+        stroke: none;
+    }
+
+    .react-flow__minimap-mask {
+        fill: var(--minimap-mask-fill);
+        stroke: var(--minimap-mask-stroke);
+        stroke-width: 15;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 11px;
+    width: 8px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--theme-700);
+}
+
+[data-theme='light'] ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--theme-300);
+}
+
+#menu-button-global-context-menu {
+    pointer-events: none;
+
+    & + div {
+        z-index: 100000;
+    }
+}
+
+.chainner-handle:has(+ .with-label, + * .with-label) {
+    margin-top: 1rem;
+}
+
+.chainner-color-selector {
+    --border-radius: var(--chakra-radii-lg);
+
+    .react-colorful {
+        width: 100%;
+        height: 9rem;
+    }
+
+    .react-colorful__saturation {
+        border-radius: var(--border-radius);
+        border-bottom: none;
+    }
+
+    .react-colorful__hue {
+        display: none;
+    }
+}
+
+.no-child-margin {
+    & > :first-child {
+        margin-top: 0 !important;
+    }
+
+    & > :last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+.chakra-modal__overlay ~ .chakra-portal > .chakra-popover__popper:has(> .chainner-color-selector) {
+    z-index: 10000 !important;
+}
+
+// This raises the modal content container above the toast container (z-index: 5500)
+.chakra-modal__content-container {
+    z-index: 6000 !important;
+}
+
+// This moves the toasts behind the grey overlay
+.chakra-modal__overlay {
+    z-index: 5700 !important;
+}
+
+// Tooltips are placed above the modal
+div[data-popper-placement] {
+    z-index: 6500 !important;
+}
+
+.absolute-fifty {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}

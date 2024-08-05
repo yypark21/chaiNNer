@@ -1,0 +1,76 @@
+@use '../../colors.scss';
+
+@keyframes dashdraw-chain {
+    from {
+        stroke-dashoffset: 20;
+    }
+}
+
+:not(.no-chain-animation) .edge-chain.running {
+    animation: dashdraw-chain 0.5s linear infinite !important;
+}
+
+.no-chain-animation .react-flow__edge.running path {
+    animation: none !important;
+}
+
+.edge-chain-behind {
+    stroke-width: 2px;
+    transition-duration: 0.15s;
+    transition-property: stroke-width, stroke;
+    transition-timing-function: ease-in-out;
+    stroke: var(--bg-700);
+
+    .edge-chain-group:hover & {
+        stroke-width: 4px;
+    }
+}
+
+.edge-chain {
+    stroke-width: 2px;
+    transition-duration: 0.15s;
+    transition-property: stroke-width, stroke;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+    stroke-dasharray: 0 !important;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: 'none';
+    opacity: 1;
+
+    .edge-chain-group:hover & {
+        stroke-width: 4px;
+    }
+
+    &.running {
+        stroke-dasharray: 10 !important;
+        animation: 'dashdraw-chain 0.5s linear infinite';
+    }
+
+    &.yet-to-run {
+        stroke-dasharray: 10 !important;
+        animation: none;
+    }
+
+    &.colliding {
+        stroke-width: 8px;
+    }
+
+    &.dot {
+        stroke: var(--chain-hole-color) !important;
+        stroke-width: 3px;
+
+        &.animated {
+            opacity: 1;
+        }
+
+        .edge-chain-group:hover & {
+            stroke-width: 4px;
+        }
+
+        &.running {
+            animation: 'dashdraw-chain 0.5s linear infinite';
+            opacity: 1;
+        }
+    }
+}
